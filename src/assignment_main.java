@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class assignment_main {
@@ -9,7 +10,7 @@ public class assignment_main {
         List<String> arr = new ArrayList<>();
         String[] array;
 
-        int primitiveOps = 0;
+        long primitiveOps = 0;
 
         /*
             Reading the words from the file into an array list, we will convert the array
@@ -29,65 +30,71 @@ public class assignment_main {
         }
 
         // Converting the array list into an array
+        // Collections.shuffle(arr);
         array = arr.toArray(new String[0]);
-        primitiveOps = bubbleSort(array);
+        BubbleSort bubbleSort = new BubbleSort(array);
+        primitiveOps = bubbleSort.sort();
         System.out.println("Bubble Sort:\nNumber of primitive operations: " + primitiveOps);
 
-        /* Printing out the array for validation
-        for (String str : array) {
+        /*array = arr.toArray(new String[0]);
+        primitiveOps = insertionSort(array);
+        System.out.println("Insertion Sort:\nNumber of primitive operations: " + primitiveOps);*/
+        /* Printing out the array for validation */
+        /*for (String str : array) {
             System.out.println(str);
-        }
-         */
+        }*/
     }
 
-    public static int bubbleSort(String[] array) {
-        int counter = 0;
+    public static long insertionSort(String[] array) {
+        long counter = 0;
 
-        // assignment for i = 0
+        // assignment for i = 1
         counter ++;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
 
             /*
                 Comparison + 1 for i < array.length
                 Addition and assignment + 2 for i++
-                Assignment + 1 for j = 0
+                Method calling + 1 for array.length
             */
             counter += 4;
 
-            for (int j = 0; j < array.length - i - 1; j++) {
+            // Get the current element
+            String key = array[i];
+            counter++;
+            // Get the element before
+            int j = i - 1;
+            counter += 2;
+
+            while(j >= 0 && array[j].compareTo(key) > 0) {
 
                 /*
-                    Comparison and subtraction + 2 for j < array.length - i - 1
-                    Addition and assignment + 2 for i++
-                    TODO: Ask lecturer does array.length considered as one primitive operations
-                */
+                    Comparison + 3 for i >= 0 and array[j].compareTo(key) > 0 and AND operation
+                    Array reference + 1
+                 */
                 counter += 4;
-
                 /*
-                    If s1 > s2, returns positive integer
-                    If s1 < s2, returns negative integer
-                    If s1 == s2, returns 0
-                */
-                if(array[j].compareTo(array[j+1]) > 0) {
-                    String temp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = temp;
-
-                    /*
-                        Assignment + 3
-                        Array reference + 4
-                     */
-                    counter += 7;
-                }
-                // Comparison and array reference + 1 + 2
+                    If the element before is greater than key, move
+                    it up the array
+                 */
+                array[j + 1] = array[j];
+                /*
+                    Array reference + 2
+                    Assignment + 1
+                 */
+                counter += 3;
+                j--;
                 counter += 2;
             }
+            array[j + 1] = key;
+            /*
+                Array reference + 1
+                Assignment + 1
+                TODO: Is j + 1 counted as one primitive ops?
+             */
+            counter += 2;
         }
-        return counter;
-    }
 
-    public int insertionSort(String[] array) {
-        int counter = 0;
         return counter;
     }
 
