@@ -1,8 +1,8 @@
 public class BubbleSort {
     private String[] array;
-    private long averageOperations;
-    private long bestOperations;
-    private long worstOperations;
+    // private long averageOperations;
+    // private long bestOperations;
+    // private long worstOperations;
 
     public BubbleSort(String[] array) {
         this.array = array;

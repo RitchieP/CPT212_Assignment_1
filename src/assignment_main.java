@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+// import java.util.Collections;
 import java.util.List;
 
 public class assignment_main {
@@ -36,13 +36,28 @@ public class assignment_main {
         primitiveOps = bubbleSort.sort();
         System.out.println("Bubble Sort:\nNumber of primitive operations: " + primitiveOps);
 
-        /*array = arr.toArray(new String[0]);
-        primitiveOps = insertionSort(array);
-        System.out.println("Insertion Sort:\nNumber of primitive operations: " + primitiveOps);*/
+        // array = arr.toArray(new String[0]);
+        // primitiveOps = insertionSort(array);
+        // System.out.println("Insertion Sort:\nNumber of primitive operations: " + primitiveOps);
         /* Printing out the array for validation */
         /*for (String str : array) {
             System.out.println(str);
         }*/
+
+        //WEIRU//
+        //QUICKSORT
+        /*
+        array = arr.toArray(new String[0]);
+        QuickSort qsort = new QuickSort(array);
+        primitiveOps = qsort.quicksort(array, 0, array.length-1);
+        System.out.println("Quick Sort:\nNumber of primitive operations: " + primitiveOps);
+        */
+        /*
+        // Printing out the array for validation 
+        for (String str : array) {
+            System.out.println(str);
+        }*/
+
     }
 
     public static long insertionSort(String[] array) {
@@ -100,6 +115,10 @@ public class assignment_main {
 
     public int quickSort(String[] array) {
         int counter = 0;
+
+
+
+        
         return counter;
     }
 
