@@ -1,17 +1,17 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-// import java.util.Collections;
+import java.util.Collections;
 import java.util.List;
 
 public class assignment_main {
     public static void main(String[] args) {
-        List<String> arr = new ArrayList<>();
-        String[] array;
+        List<String> arrList = new ArrayList<>();
 
-        long primitiveOps = 0;
-
+        int timesToShuffle = 5;
+        long primitiveOps, averageOps = 0, bestOps, worstOps;
         /*
             Reading the words from the file into an array list, we will convert the array
             list later into an array.
@@ -20,34 +20,80 @@ public class assignment_main {
             String word = br.readLine();
 
             while (word != null) {
-                arr.add(word);
+                // Filter words with non-ASCII characters
+                if(StandardCharsets.US_ASCII.newEncoder().canEncode(word)) {
+                    arrList.add(word);
+                }
                 word = br.readLine();
             }
-
-            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Converting the array list into an array
-        // Collections.shuffle(arr);
-        array = arr.toArray(new String[0]);
-        BubbleSort bubbleSort = new BubbleSort(array);
-        primitiveOps = bubbleSort.sort();
-        System.out.println("Bubble Sort:\nNumber of primitive operations: " + primitiveOps);
+        // Bubble Sort
+        System.out.println("Bubble Sort\n");
+        BubbleSort bubbleSort = new BubbleSort();
 
-        // array = arr.toArray(new String[0]);
-        // primitiveOps = insertionSort(array);
-        // System.out.println("Insertion Sort:\nNumber of primitive operations: " + primitiveOps);
-        /* Printing out the array for validation */
-        /*for (String str : array) {
-            System.out.println(str);
-        }*/
+        System.out.println("Sorting to find average case...");
+        // Find average case
+        for (int i = 0; i < timesToShuffle; i++) {
+
+            /*
+            The array will be shuffled for five times to get the average case
+             */
+            System.out.println("Sorting for " + i + " times.");
+            Collections.shuffle(arrList);
+            primitiveOps = bubbleSort.sort(arrList);
+            System.out.println("Number of operations for " + (i+1) + " time: " + primitiveOps);
+            averageOps += primitiveOps;
+        }
+        averageOps /= timesToShuffle;
+        System.out.println("The average number of primitive operations for Bubble Sort: " + averageOps);
+
+        // Finding the best case
+        System.out.println("Sorting to find best case...");
+        bestOps = bubbleSort.sort(arrList);
+        System.out.println("The best number of primitive operations for Bubble Sort: " + bestOps);
+
+        /*
+        Finding the worst case
+        We will take the sorted array and transform to array list, and reverse it to get the worst case
+         */
+        System.out.println("Sorting for worst case...");
+        worstOps = bubbleSort.getWorstOperations(arrList);
+        System.out.println("The worst number of primitive operations for Bubble Sort: " + worstOps);
+        
+
+        // Insertion Sort
+        System.out.println("Insertion Sort\n");
+        // Reset average operations value
+        averageOps = 0;
+        InsertionSort insertionSort = new InsertionSort();
+
+        System.out.println("Sorting to find average case");
+        for (int i = 0; i < timesToShuffle; i++) {
+            Collections.shuffle(arrList);
+            primitiveOps = insertionSort.sort(arrList);
+            System.out.println("Number of operations for " + (i+1) + " time: " + primitiveOps);
+            averageOps += primitiveOps;
+        }
+        averageOps /= timesToShuffle;
+        System.out.println("Number of average operations: " + averageOps);
+
+        // Best case
+        System.out.println("Sorting to fnd best case");
+        bestOps = insertionSort.sort(arrList);
+        System.out.println("The best number of primitive operations for Bubble Sort: " + bestOps);
+
+        // Finding worst case
+        System.out.println("Sorting for worst case...");
+        worstOps = insertionSort.getWorstOperation(arrList);
+        System.out.println("The worst number of primitive operations for Bubble Sort: " + worstOps);
 
         //WEIRU//
         //QUICKSORT
         /*
-        array = arr.toArray(new String[0]);
+        array = arrList.toArray(new String[0]);
         QuickSort qsort = new QuickSort(array);
         primitiveOps = qsort.quicksort(array, 0, array.length-1);
         System.out.println("Quick Sort:\nNumber of primitive operations: " + primitiveOps);
@@ -58,68 +104,6 @@ public class assignment_main {
             System.out.println(str);
         }*/
 
-    }
-
-    public static long insertionSort(String[] array) {
-        long counter = 0;
-
-        // assignment for i = 1
-        counter ++;
-        for (int i = 1; i < array.length; i++) {
-
-            /*
-                Comparison + 1 for i < array.length
-                Addition and assignment + 2 for i++
-                Method calling + 1 for array.length
-            */
-            counter += 4;
-
-            // Get the current element
-            String key = array[i];
-            counter++;
-            // Get the element before
-            int j = i - 1;
-            counter += 2;
-
-            while(j >= 0 && array[j].compareTo(key) > 0) {
-
-                /*
-                    Comparison + 3 for i >= 0 and array[j].compareTo(key) > 0 and AND operation
-                    Array reference + 1
-                 */
-                counter += 4;
-                /*
-                    If the element before is greater than key, move
-                    it up the array
-                 */
-                array[j + 1] = array[j];
-                /*
-                    Array reference + 2
-                    Assignment + 1
-                 */
-                counter += 3;
-                j--;
-                counter += 2;
-            }
-            array[j + 1] = key;
-            /*
-                Array reference + 1
-                Assignment + 1
-                TODO: Is j + 1 counted as one primitive ops?
-             */
-            counter += 2;
-        }
-
-        return counter;
-    }
-
-    public int quickSort(String[] array) {
-        int counter = 0;
-
-
-
-        
-        return counter;
     }
 
     public int radixSort(String[] array) {

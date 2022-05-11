@@ -1,19 +1,14 @@
+import java.util.Collections;
+import java.util.List;
+
 public class BubbleSort {
-    private String[] array;
-    // private long averageOperations;
-    // private long bestOperations;
-    // private long worstOperations;
 
-    public BubbleSort(String[] array) {
-        this.array = array;
-    }
-
-    public long sort() {
+    public long sort(List<String> array) {
         long counter = 0;
 
         // assignment for i = 0
         counter ++;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.size(); i++) {
 
             /*
                 Comparison + 1 for i < array.length
@@ -22,7 +17,7 @@ public class BubbleSort {
             */
             counter += 4;
 
-            for (int j = 0; j < array.length - i - 1; j++) {
+            for (int j = 0; j < array.size() - i - 1; j++) {
 
                 /*
                     Comparison and subtraction + 2 for j < array.length - i - 1
@@ -36,10 +31,8 @@ public class BubbleSort {
                     If s1 < s2, returns negative integer
                     If s1 == s2, returns 0
                 */
-                if(array[j].compareTo(array[j+1]) > 0) {
-                    String temp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = temp;
+                if (array.get(j).compareTo(array.get(j + 1)) > 0) {
+                    Collections.swap(array, j, j+1);
 
                     /*
                         Assignment + 3
@@ -50,10 +43,19 @@ public class BubbleSort {
                 // Comparison and array reference + 1 + 2
                 counter += 2;
             }
+
+            // Just to keep me sane
+            if (i % 1000 == 0) {
+                System.out.println(i);
+            }
         }
 
         return counter;
     }
 
-
+    public long getWorstOperations(List<String> array) {
+        System.out.println("Reversing array list");
+        Collections.reverse(array);
+        return sort(array);
+    }
 }
