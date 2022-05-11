@@ -93,9 +93,9 @@ public class assignment_main {
 
         //WEIRU//
         // Quick Sort
-        System.out.println("Quick Sort\n");
-        QuickSort qsort = new QuickSort();
-        primitiveOps = qsort.quicksort(arrList, 0, arrList.size()-1);
+        // System.out.println("Quick Sort\n");
+        // QuickSort qsort = new QuickSort();
+        // primitiveOps = qsort.quicksort(arrList, 0, arrList.size()-1);
 
         // System.out.println("Sorting to find average case...");
         // // Find average case
@@ -126,10 +126,13 @@ public class assignment_main {
         // worstOps = qsort.getWorstOperations(arrList);
         // System.out.println("The worst number of primitive operations for Bubble Sort: " + worstOps);
 
+        //Radix Sort
+        System.out.println("Radix Sort\n");
+        RadixSort.radixsort(arrList, '\'','™');
+        // for (String str : arrList) {
+        //     System.out.println(str);
+        // }
+        
     }
 
-    public int radixSort(String[] array) {
-        int counter = 0;
-        return counter;
-    }
 }
