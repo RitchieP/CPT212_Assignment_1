@@ -1,8 +1,6 @@
 import java.util.Collections;
 import java.util.List;
 
-// import static utility.utility.swap;
-
 public class QuickSort {
 
     //counter to count primitive operations
