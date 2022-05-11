@@ -1,31 +1,16 @@
+import java.util.Collections;
+import java.util.List;
+
+// import static utility.utility.swap;
+
 public class QuickSort {
 
     //counter to count primitive operations
     static long counter = 0;
 
-    private String[] array;
+    private int partition(List<String> array, int low, int high){
 
-    public QuickSort(String[] array) {
-        this.array = array;
-    }
-
-    private void swap(String[] array, int index1, int index2){
-
-        String temp = array[index1];
-        array[index1] = array[index2];
-        array[index2] = temp; 
-
-        /*
-        Assignment +3
-        Array reference +4
-        */
-        counter += 7;
-        // return counter;
-    }
-
-    private int partition(String[] array, int low, int high){
-
-        String pivot = array[high]; // choose last element pivot  
+        String pivot = array.get(high); // choose last element pivot  
         int i = (low - 1); // Smaller element index
 
         /*
@@ -52,10 +37,10 @@ public class QuickSort {
             */
             counter += 2; 
             // If current element is smaller than the pivot  
-            if (array[j].compareTo(pivot) < 0)  
+            if (array.get(j).compareTo(pivot) < 0)  
             {  
                 i++; // increment index of smaller element  
-                swap(array, i, j);
+                Collections.swap(array, i, j);
 
                 /*
                 Addition and assignment +2 for i++
@@ -72,11 +57,11 @@ public class QuickSort {
         */
         counter += 4;
 
-        swap(array, i + 1, high);
+        Collections.swap(array, i + 1, high);
         return (i + 1);
     }
 
-    long quicksort(String[] array, int low, int high){
+    public long quicksort(List<String> array, int low, int high){
 
         // Comparison + 1 
         counter ++;
@@ -96,6 +81,12 @@ public class QuickSort {
         }
 
         return counter;
+    }
+
+    public long getWorstOperations(List<String> array) {
+        System.out.println("Reversing array list");
+        Collections.reverse(array);
+        return quicksort(array, 0, array.size() - 1);
     }
 
 
