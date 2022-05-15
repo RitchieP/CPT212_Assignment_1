@@ -13,15 +13,15 @@ public class QuickSort {
 
         /*
         Assignment +2
-        Array reference +1
+        Method calling +1 for array.get()
         Subtraction +1
          */
         counter += 4;
 
         // Assignment +1 for int j = low
         counter ++; 
-        for (int j = low; j <= high - 1; j++)  
-        {  
+        for (int j = low; j <= high - 1; j++){
+
             /*
             Comparison +1 for j <= (high - 1) 
             Addition and Assignment +2 for j++
@@ -31,7 +31,7 @@ public class QuickSort {
 
             /* 
             Comparison +1
-            Array reference +1
+            Method calling +1 for array.get()
             */
             counter += 2; 
             // If current element is smaller than the pivot  
