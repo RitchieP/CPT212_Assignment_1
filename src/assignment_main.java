@@ -128,7 +128,8 @@ public class assignment_main {
 
         //Radix Sort
         System.out.println("Radix Sort\n");
-        RadixSort.radixsort(arrList, '\'','™');
+        primitiveOps = RadixSort.radixsort(arrList, '\'','™');
+        System.out.println("The number of primitive operations for Radix Sort: " + primitiveOps);
         // for (String str : arrList) {
         //     System.out.println(str);
         // }
