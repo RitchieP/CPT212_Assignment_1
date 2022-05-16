@@ -13,16 +13,17 @@ public class BubbleSort {
             /*
                 Comparison + 1 for i < array.length
                 Addition and assignment + 2 for i++
+                Method calling +1 for array.size()
                 Assignment + 1 for j = 0
             */
-            counter += 4;
+            counter += 5;
 
             for (int j = 0; j < array.size() - i - 1; j++) {
 
                 /*
                     Comparison and subtraction + 2 for j < array.length - i - 1
                     Addition and assignment + 2 for i++
-                    Method calling + 1 for array.length
+                    Method calling + 1 for array.size()
                 */
                 counter += 5;
 
@@ -35,18 +36,16 @@ public class BubbleSort {
                     Collections.swap(array, j, j+1);
 
                     /*
-                        Assignment + 3
-                        Array reference + 4
+                    Method calling + 1 for Collections.swap()
+                    Addition for j + 1
                      */
-                    counter += 7;
+                    counter += 2;
                 }
-                // Comparison and array reference + 1 + 2
+                /*
+                Method calling + 3 for array.get(j).compareTo(array.get(j + 1))
+                Comparison + 1 for > 0
+                 */
                 counter += 2;
-            }
-
-            // Just to keep me sane
-            if (i % 1000 == 0) {
-                System.out.println(i);
             }
         }
 

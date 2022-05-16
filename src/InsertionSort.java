@@ -11,15 +11,15 @@ public class InsertionSort {
         for (int i = 1; i < array.size(); i++) {
 
             /*
-                Comparison + 1 for i < array.length
+                Comparison + 1 for i < array.size()
                 Addition and assignment + 2 for i++
-                Method calling + 1 for array.length
+                Method calling + 1 for array.size()
             */
             counter += 4;
 
             // Get the current element
             String key = array.get(i);
-            counter++;
+            counter += 2; // For assignment and method calling
             // Get the element before
             int j = i - 1;
             counter += 2;
@@ -28,17 +28,17 @@ public class InsertionSort {
 
                 /*
                     Comparison + 3 for i >= 0 and array[j].compareTo(key) > 0 and AND operation
-                    Array reference + 1
+                    Method calling + 2 for array.get(j).compareTo()
                  */
-                counter += 4;
+                counter += 5;
                 /*
                     If the element before is greater than key, move
                     it up the array
                  */
                 array.set(j + 1, array.get(j));
                 /*
-                    Array reference + 2
-                    Assignment + 1
+                    Method calling + 2 for array.set and array.get
+                    Addition + 1 for j + 1
                  */
                 counter += 3;
                 j--;
@@ -46,16 +46,10 @@ public class InsertionSort {
             }
             array.set(j + 1, key);
             /*
-                Array reference + 1
-                Assignment + 1
-                TODO: Is j + 1 counted as one primitive ops?
+                Method calling + 1 for array.set()
+                Addition + 1 for j + 1
              */
             counter += 2;
-
-            // Just to keep me sane
-            if (i % 1000 == 0) {
-                System.out.println(i);
-            }
         }
 
         return counter;
