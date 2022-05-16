@@ -36,7 +36,6 @@ public class assignment_main {
             e.printStackTrace();
         }
 
-
         /*
         This for loop is used to obtain number of operations for different input sizes.
         The input size will increment by 5000
@@ -129,15 +128,13 @@ public class assignment_main {
             System.out.println("===================");
             System.out.println("Quick Sort");
             System.out.println("===================\n");
+            // Reset average operations value
+            averageOps = 0;
             QuickSort qsort = new QuickSort();
-            System.out.println("Sorting to find average case...");
 
+            System.out.println("Sorting to find average case...");
             // Find average case
             for (int i = 0; i < timesToShuffle; i++) {
-
-             /*
-             The array will be shuffled for five times to get the average case
-              */
                 Collections.shuffle(arrList);
                 primitiveOps = qsort.quicksort(arrList, 0, arrList.size() - 1);
                 System.out.println("Number of operations for " + (i + 1) + " time: " + primitiveOps);
@@ -151,20 +148,41 @@ public class assignment_main {
             bestOps = qsort.quicksort(arrList, 0, arrList.size() - 1);
             System.out.println("The best number of primitive operations for Quick Sort: " + bestOps + "\n");
 
-            /*
-            Finding the worst case
-            We will take the sorted array and transform to array list, and reverse it to get the worst case
-             */
+            // Finding the worst case
             System.out.println("Sorting for worst case...");
             worstOps = qsort.getWorstOperations(arrList);
-            System.out.println("The worst number of primitive operations for Bubble Sort: " + worstOps + "\n");
+            System.out.println("The worst number of primitive operations for Quick Sort: " + worstOps + "\n");
+
 
             //Radix Sort
             System.out.println("===================");
             System.out.println("Radix Sort");
             System.out.println("===================\n");
-            primitiveOps = RadixSort.radixsort(arrList, '\'', '™');
-            System.out.println("The number of primitive operations for Radix Sort: " + primitiveOps + "\n");
+            //Reset average operations value
+            averageOps = 0;
+            RadixSort rsort = new RadixSort();
+
+            System.out.println("Sorting to find average case");
+            for (int i = 0; i < timesToShuffle; i++) {
+                Collections.shuffle(arrList);
+                primitiveOps = rsort.radixsort(arrList, '\'', '™');
+                System.out.println("Number of operations for " + (i + 1) + " time: " + primitiveOps);
+                averageOps += primitiveOps;
+            }
+            averageOps /= timesToShuffle;
+            System.out.println("Number of average operations: " + averageOps + "\n");
+
+            // Best case
+            System.out.println("Sorting to fnd best case");
+            bestOps = rsort.radixsort(arrList, '\'', '™');
+            System.out.println("The best number of primitive operations for Radix Sort: " + bestOps + "\n");
+
+            // Finding worst case
+            System.out.println("Sorting for worst case...");
+            worstOps = rsort.getWorstOperations(arrList);
+            System.out.println("The worst number of primitive operations for Radix Sort: " + worstOps + "\n");
+
+            // To check if strings are sorted lexicographically
             // for (String str : arrList) {
             //     System.out.println(str);
             // }
