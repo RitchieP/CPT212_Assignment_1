@@ -1,5 +1,6 @@
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class QuickSort {
 
@@ -8,15 +9,20 @@ public class QuickSort {
 
     private int partition(List<String> array, int low, int high){
 
-        String pivot = array.get(high); // choose last element pivot  
+        // generate random element pivot  
+        int pivotIndex = new Random().nextInt(high - low) + low;
+        String pivot = array.get(pivotIndex);
+        Collections.swap(array, pivotIndex, high);
+
         int i = (low - 1); // Smaller element index
 
         /*
-        Assignment +2
-        Method calling +1 for array.get()
-        Subtraction +1
+        Assignment +3
+        Method calling +3 for Random().nextInt() & array.get() & swap()
+        Subtraction +2
+        Addition +1
          */
-        counter += 4;
+        counter += 9;
 
         // Assignment +1 for int j = low
         counter ++; 
