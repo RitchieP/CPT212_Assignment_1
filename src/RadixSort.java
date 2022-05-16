@@ -5,7 +5,7 @@ public class RadixSort {
     //counter to count primitive operations
     static long counter = 0;
 
-    public static void LSD(List<String> array, int index, char low, char high){
+    public void LSD(List<String> array, int index, char low, char high){
 
         int[] count = new int[(high - low) + 2]; //Create a counting array to calcul
         String[] temp  = new String[array.size()];
@@ -165,7 +165,7 @@ public class RadixSort {
         }
     }
 
-    private static int getMaxLength(List<String> array){
+    private int getMaxLength(List<String> array){
 
         int maxlength = 0;
 
@@ -204,7 +204,7 @@ public class RadixSort {
         return maxlength;
     }
 
-    public static long radixsort(List<String> array, char low, char high){
+    public long radixsort(List<String> array, char low, char high){
         
         int w = getMaxLength(array);
 
@@ -226,6 +226,12 @@ public class RadixSort {
          return counter;
 
      }
+
+     public long getWorstOperations(List<String> array) {
+        System.out.println("Reversing array list");
+        Collections.reverse(array);
+        return radixsort(array, '\'', '™');
+    }
 
     
 }
