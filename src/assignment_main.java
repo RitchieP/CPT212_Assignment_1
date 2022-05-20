@@ -8,6 +8,8 @@ import java.util.List;
 
 public class assignment_main {
     public static void main(String[] args) {
+
+
         /*
         inputList will be constant after reading from text file
         arrList will change based on the size needed for sorting
@@ -41,7 +43,7 @@ public class assignment_main {
         The input size will increment by 5000
         Eg: Best case when input = 1, 5001, 10001 and so on.
          */
-        for (int c = 1; c < inputList.size(); c += 5000) {
+        for (int c = 45001; c < inputList.size(); c += 5000) {
 
             try {
                 arrList = inputList.subList(0, c);
@@ -68,8 +70,8 @@ public class assignment_main {
 
             System.out.println("Sorting to find average case...");
             // Find average case
+            averageOps = 0; // Reset the average variable first
             for (int i = 0; i < timesToShuffle; i++) {
-
                  /*
                  The array will be shuffled for five times to get the average case
                   */
@@ -181,11 +183,6 @@ public class assignment_main {
             System.out.println("Sorting for worst case...");
             worstOps = rsort.getWorstOperations(arrList);
             System.out.println("The worst number of primitive operations for Radix Sort: " + worstOps + "\n");
-
-            // To check if strings are sorted lexicographically
-            // for (String str : arrList) {
-            //     System.out.println(str);
-            // }
         }
     }
 

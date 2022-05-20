@@ -8,10 +8,10 @@ public class BubbleSort {
 
         // assignment for i = 0
         counter ++;
-        for (int i = 0; i < array.size(); i++) {
+        for (int i = 0; i < array.size() - 1; i++) {
 
             /*
-                Comparison + 1 for i < array.length
+                Comparison + 1 for i < array.size()
                 Addition and assignment + 2 for i++
                 Method calling +1 for array.size()
                 Assignment + 1 for j = 0
@@ -44,8 +44,9 @@ public class BubbleSort {
                 /*
                 Method calling + 3 for array.get(j).compareTo(array.get(j + 1))
                 Comparison + 1 for > 0
+                Addition for j + 1
                  */
-                counter += 2;
+                counter += 3;
             }
         }
 
